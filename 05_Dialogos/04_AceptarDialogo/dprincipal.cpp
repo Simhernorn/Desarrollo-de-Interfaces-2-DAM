@@ -20,10 +20,11 @@ DPrincipal::DPrincipal(QWidget * parent ) : QDialog(parent) {
 }
 
 void DPrincipal::slotLanzarDialogoTransferencia() {
-	if(dTransferencia == NULL)
+	if(dTransferencia == NULL){
 		dTransferencia = new DTransferencia();
+		connect(dTransferencia,SIGNAL(accepted()),this,SLOT(slotAceptadaTransferencia()));
+	}
 	dTransferencia->show();
-	connect(dTransferencia,SIGNAL(accepted()),this,SLOT(slotAceptadaTransferencia()));
 }
 
 void DPrincipal::slotAceptadaTransferencia() {
