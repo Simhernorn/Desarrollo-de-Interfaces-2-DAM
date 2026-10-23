@@ -1,0 +1,2 @@
+Para iniciar el gedit en segundo plano: gedit &
+
