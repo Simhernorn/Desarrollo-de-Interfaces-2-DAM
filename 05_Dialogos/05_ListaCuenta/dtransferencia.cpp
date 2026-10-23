@@ -46,7 +46,6 @@ DTransferencia::DTransferencia(QStringList listaCuentas, QWidget *parent): QDial
 	this->setLayout(lyPrincipal);
 
 	/* CONEXIONES */
-	connect(cbDestino,SIGNAL(textChanged(const QString &)),this,SLOT(slotActualizarBoton(const QString &)));
 	connect(leCantidad,SIGNAL(textChanged(const QString &)),this,SLOT(slotActualizarBoton(const QString &)));
 	connect(leCantidad,SIGNAL(textChanged(const QString &)),this,SLOT(slotActualizarComision(const QString &)));
 
@@ -56,20 +55,14 @@ DTransferencia::DTransferencia(QStringList listaCuentas, QWidget *parent): QDial
 }
 
 void DTransferencia::slotActualizarBoton(const QString & cad) {
-	QString cadDestino = cbDestino->currentText();
-	QRegularExpression reDestino("^\\d{6}$");
-
-	QRegularExpressionMatch mDestino = reDestino.match(cadDestino);
-
 	QString cadCantidad = leCantidad->text();
 	QRegularExpression reCantidad("^\\d*\\.{0,1}\\d+$");
 
 	QRegularExpressionMatch mCantidad = reCantidad.match(cadCantidad);
 
-	bool destinoOK = mDestino.hasMatch();
 	bool cantidadOK = mCantidad.hasMatch();
 
-	if (destinoOK && cantidadOK)
+	if (cantidadOK)
 		bAceptar->setEnabled(true);
 	else
 		bAceptar->setEnabled(false);
