@@ -2,7 +2,7 @@
 #include <QRegularExpression>
 #include <QDebug>
 
-DTransferencia::DTransferencia(QWidget *parent): QDialog(parent){
+DTransferencia::DTransferencia(QStringList listaCuentas, QWidget *parent): QDialog(parent){
 	/* LAYOUTS */
 	lyDer = new QVBoxLayout();
 	lyIzq = new QVBoxLayout();
@@ -21,12 +21,13 @@ DTransferencia::DTransferencia(QWidget *parent): QDialog(parent){
 	lComision = new QLabel("Comisión 0 euros");
 
 	/* LINE EDITS */
-	leDestino = new QLineEdit();
+	cbDestino = new QComboBox();
+	cbDestino->addItems(listaCuentas);
 	leCantidad = new QLineEdit();
 
 	/* ADICIONES */
 	lyDestino->addWidget(lDestino);
-	lyDestino->addWidget(leDestino);
+	lyDestino->addWidget(cbDestino);
 
 	lyCantidad->addWidget(lCantidad);
 	lyCantidad->addWidget(leCantidad);
@@ -45,7 +46,7 @@ DTransferencia::DTransferencia(QWidget *parent): QDialog(parent){
 	this->setLayout(lyPrincipal);
 
 	/* CONEXIONES */
-	connect(leDestino,SIGNAL(textChanged(const QString &)),this,SLOT(slotActualizarBoton(const QString &)));
+	connect(cbDestino,SIGNAL(textChanged(const QString &)),this,SLOT(slotActualizarBoton(const QString &)));
 	connect(leCantidad,SIGNAL(textChanged(const QString &)),this,SLOT(slotActualizarBoton(const QString &)));
 	connect(leCantidad,SIGNAL(textChanged(const QString &)),this,SLOT(slotActualizarComision(const QString &)));
 
@@ -55,7 +56,7 @@ DTransferencia::DTransferencia(QWidget *parent): QDialog(parent){
 }
 
 void DTransferencia::slotActualizarBoton(const QString & cad) {
-	QString cadDestino = leDestino->text();
+	QString cadDestino = cbDestino->currentText();
 	QRegularExpression reDestino("^\\d{6}$");
 
 	QRegularExpressionMatch mDestino = reDestino.match(cadDestino);

@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QLineEdit>
+#include <QComboBox>
 
 class DTransferencia : public QDialog{
 	Q_OBJECT
@@ -17,9 +18,10 @@ public:
 	/* Componentes */
 	QPushButton *bAceptar, *bCancelar;
 	QLabel *lDestino, *lCantidad, *lComision;
-	QLineEdit *leDestino ,  *leCantidad;
+	QLineEdit *leCantidad;
+	QComboBox *cbDestino;
 
-	DTransferencia(QWidget *parent = nullptr);
+	DTransferencia(QStringList lista, QWidget *parent = nullptr);
 
 public slots:
 	void slotActualizarBoton(const QString &);

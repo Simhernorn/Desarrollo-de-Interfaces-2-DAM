@@ -21,7 +21,7 @@ DPrincipal::DPrincipal(QWidget * parent ) : QDialog(parent) {
 
 void DPrincipal::slotLanzarDialogoTransferencia() {
 	if(dTransferencia == NULL){
-		dTransferencia = new DTransferencia();
+		dTransferencia = new DTransferencia(this->listaCuentas);
 		connect(dTransferencia,SIGNAL(accepted()),this,SLOT(slotAceptadaTransferencia()));
 	}
 	dTransferencia->show();
@@ -43,6 +43,9 @@ void DPrincipal::slotAceptadaTransferencia() {
 		resTrans += QString::number(cant);
 		resTrans += " euros aceptada";
 	}
+
+	qDebug() << "Transferencia a compte " << dTransferencia->cbDestino->currentText()
+			 << " per valor de " << dTransferencia->leCantidad->text() << " acceptada";
 
 	lEstadoTransferencia->setText(resTrans);
 }
