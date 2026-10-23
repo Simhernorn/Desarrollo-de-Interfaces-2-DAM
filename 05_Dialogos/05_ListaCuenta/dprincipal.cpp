@@ -21,7 +21,7 @@ DPrincipal::DPrincipal(QWidget * parent ) : QDialog(parent) {
 
 void DPrincipal::slotLanzarDialogoTransferencia() {
 	if(dTransferencia == NULL){
-		dTransferencia = new DTransferencia(this->listaCuentas);
+		dTransferencia = new DTransferencia(listaCuentas);
 		connect(dTransferencia,SIGNAL(accepted()),this,SLOT(slotAceptadaTransferencia()));
 	}
 	dTransferencia->show();
