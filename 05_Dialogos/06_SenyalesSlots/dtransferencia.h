@@ -26,6 +26,11 @@ public:
 public slots:
 	void slotActualizarBoton(const QString &);
 	void slotActualizarComision(const QString &);
+	void slotDatosCambiados();
+
+signals:
+	void senyalDatosCambiados(float,QString);
+	void senyalActivarBoton(bool);
 };
 
 #endif

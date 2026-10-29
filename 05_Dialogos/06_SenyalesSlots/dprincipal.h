@@ -12,7 +12,7 @@ class DPrincipal : public QDialog{
 
 public:
 	QStringList listaCuentas = {"111111","222222","333333"};
-	QPushButton *bLanzar;
+	QPushButton *bLanzar, *bAceptarPrincipal;
 	QLabel *lEstadoTransferencia;
 	DTransferencia *dTransferencia;
 	QHBoxLayout *lyPrincipal;
@@ -23,6 +23,8 @@ public:
 public slots:
 	void slotLanzarDialogoTransferencia();
 	void slotAceptadaTransferencia();
+	void slotDatosTransferenciaCambiados(float,QString);
+	void slotActivarBoton(bool);
 };
 
 #endif
