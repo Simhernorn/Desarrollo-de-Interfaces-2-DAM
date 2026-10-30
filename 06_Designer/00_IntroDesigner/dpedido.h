@@ -9,7 +9,7 @@ class DPedido : public QDialog, public Ui::DPedido  {
 public:
     DPedido (QWidget *parent = NULL);
 
-}
+};
 
 
 
