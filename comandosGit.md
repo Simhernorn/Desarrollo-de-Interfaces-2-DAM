@@ -1,0 +1,7 @@
+gstat='git status'
+gadd='git add .'
+gcomt='git commit -m'
+gpush='git push -u origin main'
+make='mingw32-make'
+cstart='cd ~'
+cdesint='cd ~/Desktop/Curso2627/DesInterfaces'

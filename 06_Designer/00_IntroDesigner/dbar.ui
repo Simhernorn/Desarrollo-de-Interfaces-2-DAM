@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DPedido</class>
- <widget class="QDialog" name="DPedido">
+ <class>DBar</class>
+ <widget class="QDialog" name="DBar">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -19,55 +19,109 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="lPlatos">
          <property name="text">
-          <string>TextLabel</string>
+          <string>Platos</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="cbPlatos"/>
+        <widget class="QComboBox" name="cmbPlatos">
+         <item>
+          <property name="text">
+           <string>Calimotxo</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Pataques braves</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Tapa de xamo serra</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Truita de pataques en sebolla</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Truita de pataques a la sicopata (sense sebolla)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Tercio</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Litrona</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Calamars a la rumana</string>
+          </property>
+         </item>
+        </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="lPrecioFijo">
          <property name="text">
-          <string>TextLabel</string>
+          <string>Precio</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="spinBox"/>
+        <widget class="QSpinBox" name="sbPrecio"/>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox">
+        <widget class="QCheckBox" name="cbMediaRacion">
          <property name="text">
-          <string>CheckBox</string>
+          <string>Media Racion</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="btnAnyadir">
          <property name="text">
-          <string>PushButton</string>
+          <string>Anyadir</string>
          </property>
         </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="lPedido">
          <property name="text">
           <string>Pedido</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QListWidget" name="listWidget"/>
+        <widget class="QListWidget" name="lwPlatosPedidos"/>
        </item>
        <item>
-        <widget class="QLabel" name="lPrecio">
+        <widget class="QLabel" name="lPrecioCambia">
          <property name="text">
           <string>TextLabel</string>
          </property>
@@ -94,7 +148,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>DPedido</receiver>
+   <receiver>DBar</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -110,7 +164,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>DPedido</receiver>
+   <receiver>DBar</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
