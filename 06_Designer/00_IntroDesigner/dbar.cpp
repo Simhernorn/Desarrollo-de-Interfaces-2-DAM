@@ -1,5 +1,4 @@
 #include "dbar.h"
-#include "deliminarplato.h"
 
 DBar::DBar(QWidget * parent) : QDialog(parent){
     setupUi(this);
@@ -11,14 +10,39 @@ DBar::DBar(QWidget * parent) : QDialog(parent){
 			this,
 			SLOT(slotAnyadirPlato()));
 
+	dEliminarPlato = NULL;
+}
+
+void DBar::slotAbrirSegundoDialogo() {
+	if (dEliminarPlato == NULL) {
+		dEliminarPlato = new DEliminarPlato();
+		connect(this,
+				SIGNAL(senyalAnyadirPlato(const QString &)),
+				dEliminarPlato,
+				SLOT(slotAnyadirPlato2(const QString &)));
+		connect(dEliminarPlato,
+				SIGNAL(senyalEliminarPlato(int)),
+				this,
+				SLOT(slotEliminarPlato(int)));
+		dEliminarPlato->show();
+	}
 }
 
 void DBar::slotAnyadirPlato() {
+	slotAbrirSegundoDialogo();   // asegura que existe y está conectado
+
 	lwPlatosPedidos->addItem(cmbPlatos->currentText());
 
 	int precioPlato = sbPrecio->value();
+	precios.append(precioPlato);
 	total += precioPlato;
-	QString texto("Total: ");
-	texto += QString::number(total);
-	lPrecioCambia->setText(texto);
+	lPrecioCambia->setText("Total: " + QString::number(total));
+
+	emit senyalAnyadirPlato(cmbPlatos->currentText());
+}
+
+void DBar::slotEliminarPlato(int fila) {
+	delete lwPlatosPedidos->takeItem(fila);
+	total -= precios.takeAt(fila);
+	lPrecioCambia->setText("Total: " + QString::number(total));
 }

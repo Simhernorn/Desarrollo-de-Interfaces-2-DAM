@@ -10,6 +10,12 @@ public:
 
 	DEliminarPlato (QWidget *parent = NULL);
 
+public slots:
+	void slotAnyadirPlato2(const QString &);
+	void slotDobleClick(QListWidgetItem *);
+
+signals:
+	void senyalEliminarPlato(int fila);
 };
 
 #endif
