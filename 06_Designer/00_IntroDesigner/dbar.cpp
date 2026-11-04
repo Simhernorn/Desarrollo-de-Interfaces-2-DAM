@@ -20,10 +20,12 @@ void DBar::slotAbrirSegundoDialogo() {
 				SIGNAL(senyalAnyadirPlato(const QString &)),
 				dEliminarPlato,
 				SLOT(slotAnyadirPlato2(const QString &)));
+
 		connect(dEliminarPlato,
 				SIGNAL(senyalEliminarPlato(int)),
 				this,
 				SLOT(slotEliminarPlato(int)));
+
 		dEliminarPlato->show();
 	}
 }
