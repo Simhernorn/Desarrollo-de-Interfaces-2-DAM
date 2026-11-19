@@ -13,6 +13,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -23,7 +24,8 @@ class Ui_WidgetNota
 {
 public:
     QVBoxLayout *verticalLayout;
-    QLabel *lbl;
+    QLabel *lblNombre;
+    QPushButton *btnNombre;
     QSpinBox *spinValor;
     QCheckBox *checkActivo;
 
@@ -34,10 +36,15 @@ public:
         WidgetNota->resize(168, 109);
         verticalLayout = new QVBoxLayout(WidgetNota);
         verticalLayout->setObjectName("verticalLayout");
-        lbl = new QLabel(WidgetNota);
-        lbl->setObjectName("lbl");
+        lblNombre = new QLabel(WidgetNota);
+        lblNombre->setObjectName("lblNombre");
 
-        verticalLayout->addWidget(lbl);
+        verticalLayout->addWidget(lblNombre);
+
+        btnNombre = new QPushButton(WidgetNota);
+        btnNombre->setObjectName("btnNombre");
+
+        verticalLayout->addWidget(btnNombre);
 
         spinValor = new QSpinBox(WidgetNota);
         spinValor->setObjectName("spinValor");
@@ -58,8 +65,9 @@ public:
     void retranslateUi(QWidget *WidgetNota)
     {
         WidgetNota->setWindowTitle(QCoreApplication::translate("WidgetNota", "Form", nullptr));
-        lbl->setText(QCoreApplication::translate("WidgetNota", "TextLabel", nullptr));
-        checkActivo->setText(QCoreApplication::translate("WidgetNota", "CheckBox", nullptr));
+        lblNombre->setText(QCoreApplication::translate("WidgetNota", "Nombre", nullptr));
+        btnNombre->setText(QCoreApplication::translate("WidgetNota", "Nombre", nullptr));
+        checkActivo->setText(QCoreApplication::translate("WidgetNota", "Valorar", nullptr));
     } // retranslateUi
 
 };

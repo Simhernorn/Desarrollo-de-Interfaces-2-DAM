@@ -30,12 +30,13 @@ public:
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
     QLabel *lblMedia;
-    QLabel *lblMedia_2;
-    QLabel *lblMedia_3;
+    QLabel *lblMaximo;
+    QLabel *lblMinimo;
     QVBoxLayout *verticalLayout_2;
     QPushButton *btnCalcularMedia;
     QPushButton *btnAnyadir;
     QPushButton *btnQuitar;
+    QPushButton *btnCambiarNombres;
     QDialogButtonBox *buttonBox;
 
     void setupUi(QDialog *Notas)
@@ -61,15 +62,15 @@ public:
 
         verticalLayout->addWidget(lblMedia);
 
-        lblMedia_2 = new QLabel(Notas);
-        lblMedia_2->setObjectName("lblMedia_2");
+        lblMaximo = new QLabel(Notas);
+        lblMaximo->setObjectName("lblMaximo");
 
-        verticalLayout->addWidget(lblMedia_2);
+        verticalLayout->addWidget(lblMaximo);
 
-        lblMedia_3 = new QLabel(Notas);
-        lblMedia_3->setObjectName("lblMedia_3");
+        lblMinimo = new QLabel(Notas);
+        lblMinimo->setObjectName("lblMinimo");
 
-        verticalLayout->addWidget(lblMedia_3);
+        verticalLayout->addWidget(lblMinimo);
 
 
         horizontalLayout->addLayout(verticalLayout);
@@ -90,6 +91,11 @@ public:
         btnQuitar->setObjectName("btnQuitar");
 
         verticalLayout_2->addWidget(btnQuitar);
+
+        btnCambiarNombres = new QPushButton(Notas);
+        btnCambiarNombres->setObjectName("btnCambiarNombres");
+
+        verticalLayout_2->addWidget(btnCambiarNombres);
 
 
         horizontalLayout->addLayout(verticalLayout_2);
@@ -116,11 +122,12 @@ public:
     {
         Notas->setWindowTitle(QCoreApplication::translate("Notas", "Dialog", nullptr));
         lblMedia->setText(QCoreApplication::translate("Notas", "Media: 0", nullptr));
-        lblMedia_2->setText(QCoreApplication::translate("Notas", "TextLabel", nullptr));
-        lblMedia_3->setText(QCoreApplication::translate("Notas", "TextLabel", nullptr));
+        lblMaximo->setText(QCoreApplication::translate("Notas", "Maximo:", nullptr));
+        lblMinimo->setText(QCoreApplication::translate("Notas", "Minimo:", nullptr));
         btnCalcularMedia->setText(QCoreApplication::translate("Notas", "Calcular Media", nullptr));
         btnAnyadir->setText(QCoreApplication::translate("Notas", "A\303\261adir Nota", nullptr));
         btnQuitar->setText(QCoreApplication::translate("Notas", "Quitar Nota", nullptr));
+        btnCambiarNombres->setText(QCoreApplication::translate("Notas", "Cambiar Nombres", nullptr));
     } // retranslateUi
 
 };

@@ -40,19 +40,25 @@ template <> constexpr inline auto Notas::qt_create_metaobjectdata<qt_meta_tag_ZN
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
         "Notas",
-        "slotCalcularMedia",
+        "senyalBotonesNombre",
         "",
+        "slotCalcularMedia",
         "slotAnyadirNota",
-        "slotQuitarNota"
+        "slotQuitarNota",
+        "slotCambiarNombres"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Signal 'senyalBotonesNombre'
+        QtMocHelpers::SignalData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'slotCalcularMedia'
-        QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
-        // Slot 'slotAnyadirNota'
         QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPublic, QMetaType::Void),
-        // Slot 'slotQuitarNota'
+        // Slot 'slotAnyadirNota'
         QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'slotQuitarNota'
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'slotCambiarNombres'
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -76,13 +82,18 @@ void Notas::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
     auto *_t = static_cast<Notas *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->slotCalcularMedia(); break;
-        case 1: _t->slotAnyadirNota(); break;
-        case 2: _t->slotQuitarNota(); break;
+        case 0: _t->senyalBotonesNombre(); break;
+        case 1: _t->slotCalcularMedia(); break;
+        case 2: _t->slotAnyadirNota(); break;
+        case 3: _t->slotQuitarNota(); break;
+        case 4: _t->slotCambiarNombres(); break;
         default: ;
         }
     }
-    (void)_a;
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (Notas::*)()>(_a, &Notas::senyalBotonesNombre, 0))
+            return;
+    }
 }
 
 const QMetaObject *Notas::metaObject() const
@@ -106,15 +117,21 @@ int Notas::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 5;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 5;
     }
     return _id;
+}
+
+// SIGNAL 0
+void Notas::senyalBotonesNombre()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 QT_WARNING_POP
