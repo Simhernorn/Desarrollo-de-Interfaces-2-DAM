@@ -312,6 +312,21 @@ release/moc_editor.cpp: editor.h \
 		C:/Qt/6.12.0/mingw_64/include/QtCore/qlocale.h \
 		C:/Qt/6.12.0/mingw_64/include/QtGui/qguiapplication_platform.h \
 		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qtabwidget.h \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/QTextEdit \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qtextedit.h \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/QAction \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/QMenu \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/QIcon \
 		release/moc_predefs.h \
 		C:/Qt/6.12.0/mingw_64/bin/moc.exe
 	'C:\Qt\6.12.0\mingw_64\bin\moc.exe' $(DEFINES) --include C:/Users/Usuario/Desktop/Curso2627/DesInterfaces/07_Editor/release/moc_predefs.h -IC:/Qt/6.12.0/mingw_64/mkspecs/win32-g++ -IC:/Users/Usuario/Desktop/Curso2627/DesInterfaces/07_Editor -IC:/Users/Usuario/Desktop/Curso2627/DesInterfaces/07_Editor -IC:/Qt/6.12.0/mingw_64/include -IC:/Qt/6.12.0/mingw_64/include/QtWidgets -IC:/Qt/6.12.0/mingw_64/include/QtGui -IC:/Qt/6.12.0/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include editor.h -o release/moc_editor.cpp
@@ -537,7 +552,22 @@ release/editor.o: editor.cpp editor.h \
 		C:/Qt/6.12.0/mingw_64/include/QtGui/qinputmethod.h \
 		C:/Qt/6.12.0/mingw_64/include/QtCore/qlocale.h \
 		C:/Qt/6.12.0/mingw_64/include/QtGui/qguiapplication_platform.h \
-		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qtabwidget.h
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qtabwidget.h \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/QTextEdit \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qtextedit.h \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/QAction \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/QMenu \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/QIcon
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/editor.o editor.cpp
 
 release/main.o: main.cpp C:/Qt/6.12.0/mingw_64/include/QtWidgets/QApplication \
@@ -745,7 +775,22 @@ release/main.o: main.cpp C:/Qt/6.12.0/mingw_64/include/QtWidgets/QApplication \
 		C:/Qt/6.12.0/mingw_64/include/QtCore/QSizeF \
 		C:/Qt/6.12.0/mingw_64/include/QtGui/QTransform \
 		C:/Qt/6.12.0/mingw_64/include/QtGui/qscreen_platform.h \
-		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qtabwidget.h
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qtabwidget.h \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/QTextEdit \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qtextedit.h \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/QAction \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.12.0/mingw_64/include/QtWidgets/QMenu \
+		C:/Qt/6.12.0/mingw_64/include/QtGui/QIcon
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/main.o main.cpp
 
 release/moc_editor.o: release/moc_editor.cpp 

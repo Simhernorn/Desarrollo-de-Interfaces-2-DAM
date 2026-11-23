@@ -39,10 +39,23 @@ template <> constexpr inline auto Editor::qt_create_metaobjectdata<qt_meta_tag_Z
 {
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
-        "Editor"
+        "Editor",
+        "slotAbrir",
+        "",
+        "slotGuardar",
+        "slotTextoCambiado",
+        "slotLimpiar"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Slot 'slotAbrir'
+        QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'slotGuardar'
+        QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'slotTextoCambiado'
+        QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'slotLimpiar'
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -64,9 +77,15 @@ Q_CONSTINIT const QMetaObject Editor::staticMetaObject = { {
 void Editor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     auto *_t = static_cast<Editor *>(_o);
-    (void)_t;
-    (void)_c;
-    (void)_id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->slotAbrir(); break;
+        case 1: _t->slotGuardar(); break;
+        case 2: _t->slotTextoCambiado(); break;
+        case 3: _t->slotLimpiar(); break;
+        default: ;
+        }
+    }
     (void)_a;
 }
 
@@ -86,6 +105,18 @@ void *Editor::qt_metacast(const char *_clname)
 int Editor::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QMainWindow::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 4)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 4;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 4)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 4;
+    }
     return _id;
 }
 QT_WARNING_POP
