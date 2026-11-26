@@ -12,6 +12,11 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <QFileDialog>
+#include <QDebug>
+#include <QFile>
+#include <QTextStream>
+#include <QTextBlock>
 
 class Editor : public QMainWindow {
 	Q_OBJECT

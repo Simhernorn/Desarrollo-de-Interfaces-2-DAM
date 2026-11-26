@@ -23,7 +23,8 @@ void Editor::crearActions() {
 			SIGNAL(triggered()),
 			this,
 			SLOT(close()));
-
+/linea = documento->dameOtraLinea();
+	//stream << linea;
 	connect(accionGuardar,
 			SIGNAL(triggered()),
 			this,
@@ -100,24 +101,50 @@ void Editor::slotLimpiar() {
 }
 
 void Editor::slotAbrir() {
-	if(!guardarEstat) {
-		int resultado = QMessageBox::question(this,
-											  QString("Cuidao"),
-											  QString("Vas a abrir un documento sin guardar!"),
-											  QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+	QString nombreArchivo;
+	nombreArchivo = QFileDialog::getOpenFileName(this,
+								QString("Abrir Archivo"),
+								QString("./"),
+								QString("Todos (*);; \
+									Ficheros de texto (*.txt)")
+								);
 
-		if(resultado == QMessageBox::Save) {
-			slotGuardar();
-			textoEstado->setText("Guardado");
-		} else if(resultado == QMessageBox::Discard) {
-			editorCentral->document()->clear();
-			textoEstado->setText("Descartado");
-		} else {
-			textoEstado->setText("Has canselao");
-		}
+	QFile fichero(nombreArchivo);
+
+	if (! fichero.open(QIODevice::ReadOnly) )
+		return;
+
+	QTextStream stream(&fichero);
+
+	while (! stream.atEnd()) {
+		QString linea = stream.readLine();
+		editorCentral->append(linea);
 	}
+
+	qDebug() << "Nombre fichero seleccionado: " << nombreArchivo;
 }
 
 void Editor::slotGuardar() {
 	guardarEstat = true;
+
+	QString nombreArchivo;
+	nombreArchivo = QFileDialog::getSaveFileName(this,
+								QString("Guardar Como"),
+								QString("./"),
+								QString("Todos (*);; \
+									Ficheros de texto (*.txt)")
+								);
+
+	QFile fichero(nombreArchivo);
+
+	if(! fichero.open(QIODevice::WriteOnly))
+		return;
+
+	QTextStream stream(&fichero);
+
+	for (int i = 0; i < editorCentral->documento->blockCount(); i++) {
+		stream << documento->findBlockByNumber(i).text() << Qt::endl;
+	}
+
+	fichero.close();
 }
