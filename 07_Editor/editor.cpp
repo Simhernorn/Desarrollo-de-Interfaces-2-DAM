@@ -9,6 +9,8 @@ Editor::Editor(QWidget * parent, Qt::WindowFlags flags) :
 	crearActions();
 	crearMenus();
 	crearStatusBar();
+
+	rutaFicheroActual = QString("");
 }
 
 void Editor::crearActions() {
@@ -17,23 +19,45 @@ void Editor::crearActions() {
 
 	accionGuardar = new QAction("Guardar",this);
 
+	accionGuardarComo = new QAction("Guardar Como",this);
+
 	accionAbrir = new QAction("Abrir",this);
+
+	accionNuevo = new QAction("Nuevo",this);
 
 	connect(accionSalir,
 			SIGNAL(triggered()),
 			this,
 			SLOT(close()));
-/linea = documento->dameOtraLinea();
-	//stream << linea;
+
 	connect(accionGuardar,
 			SIGNAL(triggered()),
 			this,
 			SLOT(slotGuardar()));
 
+	connect(accionGuardarComo,
+			SIGNAL(triggered()),
+			this,
+			SLOT(slotGuardarComo()));
+
 	connect(accionAbrir,
 			SIGNAL(triggered()),
 			this,
 			SLOT(slotAbrir()));
+
+	connect(accionNuevo,
+			SIGNAL(triggered()),
+			this,
+			SLOT(slotNuevo()));
+
+	for (int i = 0; i < MAXRECIENTES; ++i) {
+		QAction *accion = new QAction("pepe");
+		connect(accion,
+				&QAction::triggered,
+				this,
+				&Editor::slotAbrirFicheroReciente);
+		accionesFicherosRecientes.append(accion);
+	}
 }
 
 void Editor::crearMenus() {
@@ -42,12 +66,20 @@ void Editor::crearMenus() {
 
 	menuFitxer->addAction(accionSalir);
 	menuFitxer->addAction(accionGuardar);
+	menuFitxer->addAction(accionGuardarComo);
 	menuFitxer->addAction(accionAbrir);
+	menuFitxer->addAction(accionNuevo);
 
 	editorCentral->addAction(accionSalir);
 	editorCentral->addAction(accionGuardar);
+	editorCentral->addAction(accionGuardarComo);
 	editorCentral->addAction(accionAbrir);
+	editorCentral->addAction(accionNuevo);
 	editorCentral->setContextMenuPolicy(Qt::ActionsContextMenu);
+
+	for (int i = 0; i < accionesFicherosRecientes.length(); ++i) {
+		menuFitxer->addAction(accionesFicherosRecientes[i]);
+	}
 
 	connect(editorCentral->document(),
 			SIGNAL(contentsChanged()),
@@ -70,7 +102,7 @@ void Editor::closeEvent(QCloseEvent *event) {
 
 void Editor::slotTextoCambiado() {
 	guardarEstat = false;
-	textoEstado->setText("MCELPMQTPFDLGP");
+	textoEstado->setText("Cambiado");
 }
 
 void Editor::crearStatusBar() {
@@ -101,13 +133,31 @@ void Editor::slotLimpiar() {
 }
 
 void Editor::slotAbrir() {
-	QString nombreArchivo;
+
+	int respuesta;
+	if(!guardarEstat) {
+		respuesta = QMessageBox::question(this,
+											  QString("Cuidao"),
+											  QString("Te vas a cargar el texto, ¡Imbecil!"),
+											  QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+
+		if (respuesta == QMessageBox::Cancel)
+			return;
+
+		if (respuesta == QMessageBox::Save)
+			slotGuardar();
+	}
+
+	editorCentral->document()->clear();
+
+	QString nombreArchivo = rutaFicheroActual;
+
 	nombreArchivo = QFileDialog::getOpenFileName(this,
-								QString("Abrir Archivo"),
-								QString("./"),
-								QString("Todos (*);; \
-									Ficheros de texto (*.txt)")
-								);
+							QString("Abrir Archivo"),
+							QString("./"),
+							QString("Todos (*);; \
+								Ficheros de texto (*.txt)")
+							);
 
 	QFile fichero(nombreArchivo);
 
@@ -121,10 +171,35 @@ void Editor::slotAbrir() {
 		editorCentral->append(linea);
 	}
 
+	rutaFicheroActual = nombreArchivo;
+	fichero.close();
+	guardarEstat = true;
 	qDebug() << "Nombre fichero seleccionado: " << nombreArchivo;
 }
 
 void Editor::slotGuardar() {
+	if (rutaFicheroActual.isEmpty())
+		slotGuardarComo();
+
+	guardarEstat = true;
+
+	QString nombreArchivo = rutaFicheroActual;
+
+	QFile fichero(nombreArchivo);
+
+	if(! fichero.open(QIODevice::WriteOnly))
+		return;
+
+	QTextStream stream(&fichero);
+
+	for (int i = 0; i < editorCentral->document()->blockCount(); i++) {
+		stream << editorCentral->document()->findBlockByNumber(i).text() << Qt::endl;
+	}
+
+	fichero.close();
+}
+
+void Editor::slotGuardarComo() {
 	guardarEstat = true;
 
 	QString nombreArchivo;
@@ -142,9 +217,19 @@ void Editor::slotGuardar() {
 
 	QTextStream stream(&fichero);
 
-	for (int i = 0; i < editorCentral->documento->blockCount(); i++) {
-		stream << documento->findBlockByNumber(i).text() << Qt::endl;
+	for (int i = 0; i < editorCentral->document()->blockCount(); i++) {
+		stream << editorCentral->document()->findBlockByNumber(i).text() << Qt::endl;
 	}
 
+	rutaFicheroActual = nombreArchivo;
 	fichero.close();
+}
+
+void Editor::slotNuevo() {
+	rutaFicheroActual = QString("");
+	editorCentral->document()->clear();
+}
+
+void Editor::slotAbrirFicheroReciente() {
+
 }

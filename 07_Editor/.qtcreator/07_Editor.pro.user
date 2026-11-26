@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 20.0.2, 2026-11-26T11:15:53. -->
+<!-- Written by QtCreator 21.0.0, 2026-11-26T13:46:55. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -26,7 +26,13 @@
      <value type="QByteArray" key="CurrentPreferences">QmlJSGlobal</value>
     </valuemap>
    </valuemap>
-   <value type="qlonglong" key="EditorConfiguration.CodeStyle.Count">2</value>
+   <valuemap type="QVariantMap" key="EditorConfiguration.CodeStyle.2">
+    <value type="QString" key="language">CMakeProjectManager.CMakeLanguage</value>
+    <valuemap type="QVariantMap" key="value">
+     <value type="QByteArray" key="CurrentPreferences">CMakeProjectManager.GlobalCodeStyle</value>
+    </valuemap>
+   </valuemap>
+   <value type="qlonglong" key="EditorConfiguration.CodeStyle.Count">3</value>
    <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
    <value type="int" key="EditorConfiguration.IndentSize">4</value>
    <value type="int" key="EditorConfiguration.PaddingMode">1</value>
@@ -52,6 +58,7 @@
    <value type="int" key="AutoTest.RunAfterBuild">0</value>
    <value type="bool" key="AutoTest.UseGlobal">true</value>
    <valuemap type="QVariantMap" key="ClangTools">
+    <value type="QString" key="ClangTools.DiagnosticConfig">Builtin.DefaultTidyAndClazy</value>
     <valuelist type="QVariantList" key="ClangTools.SelectedDirs"/>
     <valuelist type="QVariantList" key="ClangTools.SelectedFiles"/>
     <valuelist type="QVariantList" key="ClangTools.SuppressedDiagnostics"/>
@@ -132,14 +139,17 @@
      <value type="int" key="PE.EnvironmentAspect.Base">2</value>
      <value type="UnknownType" key="PE.EnvironmentAspect.Changes"></value>
      <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
-     <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
+     <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph fp -F 250</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:</value>
      <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Usuario/Desktop/Curso2627/DesInterfaces/07_Editor/07_Editor.pro</value>
      <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
      <value type="QString" key="ProjectExplorer.RunConfiguration.UniqueId"></value>
+     <value type="int" key="RunConfiguration.UseCppDebugger">2</value>
      <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
      <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
+     <value type="int" key="RunConfiguration.UsePythonDebugger">2</value>
+     <value type="int" key="RunConfiguration.UseQmlDebugger">2</value>
      <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
      <value type="QString" key="RunConfiguration.WorkingDirectory.default">%{RunConfig:Executable:Path}</value>
     </valuemap>
@@ -170,14 +180,17 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <value type="UnknownType" key="PE.EnvironmentAspect.Changes"></value>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
-    <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
+    <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph fp -F 250</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Usuario/Desktop/Curso2627/DesInterfaces/07_Editor/07_Editor.pro</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.UniqueId"></value>
+    <value type="int" key="RunConfiguration.UseCppDebugger">2</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
+    <value type="int" key="RunConfiguration.UsePythonDebugger">2</value>
+    <value type="int" key="RunConfiguration.UseQmlDebugger">2</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">%{RunConfig:Executable:Path}</value>
    </valuemap>

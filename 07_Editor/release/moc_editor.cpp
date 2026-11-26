@@ -40,22 +40,31 @@ template <> constexpr inline auto Editor::qt_create_metaobjectdata<qt_meta_tag_Z
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
         "Editor",
-        "slotAbrir",
+        "slotNuevo",
         "",
+        "slotAbrir",
         "slotGuardar",
+        "slotGuardarComo",
         "slotTextoCambiado",
-        "slotLimpiar"
+        "slotLimpiar",
+        "slotAbrirFicheroReciente"
     };
 
     QtMocHelpers::UintData qt_methods {
-        // Slot 'slotAbrir'
+        // Slot 'slotNuevo'
         QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
-        // Slot 'slotGuardar'
+        // Slot 'slotAbrir'
         QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPublic, QMetaType::Void),
-        // Slot 'slotTextoCambiado'
+        // Slot 'slotGuardar'
         QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
-        // Slot 'slotLimpiar'
+        // Slot 'slotGuardarComo'
         QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'slotTextoCambiado'
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'slotLimpiar'
+        QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'slotAbrirFicheroReciente'
+        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -79,10 +88,13 @@ void Editor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
     auto *_t = static_cast<Editor *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->slotAbrir(); break;
-        case 1: _t->slotGuardar(); break;
-        case 2: _t->slotTextoCambiado(); break;
-        case 3: _t->slotLimpiar(); break;
+        case 0: _t->slotNuevo(); break;
+        case 1: _t->slotAbrir(); break;
+        case 2: _t->slotGuardar(); break;
+        case 3: _t->slotGuardarComo(); break;
+        case 4: _t->slotTextoCambiado(); break;
+        case 5: _t->slotLimpiar(); break;
+        case 6: _t->slotAbrirFicheroReciente(); break;
         default: ;
         }
     }
@@ -108,14 +120,14 @@ int Editor::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 7;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 7)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 4;
+        _id -= 7;
     }
     return _id;
 }

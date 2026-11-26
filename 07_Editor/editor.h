@@ -17,6 +17,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QTextBlock>
+#include <QVector>
 
 class Editor : public QMainWindow {
 	Q_OBJECT
@@ -27,16 +28,22 @@ public:
 	QAction
 		*accionSalir,
 		*accionGuardar,
-		*accionAbrir;
+		*accionGuardarComo,
+		*accionAbrir,
+		*accionNuevo;
 
-	QTextEdit
-		*editorCentral;
+	QTextEdit *editorCentral;
 
-	QLabel
-		*textoEstado;
+	QLabel *textoEstado;
 
 	QPushButton
 		*btnBorrarSB;
+
+	QString rutaFicheroActual;
+
+	static const int MAXRECIENTES = 5;
+	QStringList rutasRecientes;
+	QVector<QAction*> accionesFicherosRecientes;
 
 	Editor(QWidget * parent = NULL,
 		Qt::WindowFlags flags = Qt::WindowFlags());
@@ -47,10 +54,13 @@ public:
 	void closeEvent(QCloseEvent *event);
 
 public slots:
+	void slotNuevo();
 	void slotAbrir();
 	void slotGuardar();
+	void slotGuardarComo();
 	void slotTextoCambiado();
 	void slotLimpiar();
+	void slotAbrirFicheroReciente();
 };
 
 #endif
