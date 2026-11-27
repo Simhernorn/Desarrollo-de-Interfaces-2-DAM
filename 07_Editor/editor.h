@@ -18,6 +18,9 @@
 #include <QTextStream>
 #include <QTextBlock>
 #include <QVector>
+#include <QFileInfo>
+
+#include "finddialog.h"
 
 class Editor : public QMainWindow {
 	Q_OBJECT
@@ -25,12 +28,15 @@ class Editor : public QMainWindow {
 public:
 	bool guardarEstat = true;
 
+	FindDialog *dialogoBuscar;
+
 	QAction
 		*accionSalir,
 		*accionGuardar,
 		*accionGuardarComo,
 		*accionAbrir,
-		*accionNuevo;
+		*accionNuevo,
+		*accionBuscar;
 
 	QTextEdit *editorCentral;
 
@@ -44,6 +50,8 @@ public:
 	static const int MAXRECIENTES = 5;
 	QStringList rutasRecientes;
 	QVector<QAction*> accionesFicherosRecientes;
+	void establecerFicheroActual(QString);
+	void abrirArchivo(QString);
 
 	Editor(QWidget * parent = NULL,
 		Qt::WindowFlags flags = Qt::WindowFlags());
@@ -61,6 +69,7 @@ public slots:
 	void slotTextoCambiado();
 	void slotLimpiar();
 	void slotAbrirFicheroReciente();
+	void slotAbrirDialogoBuscar();
 };
 
 #endif

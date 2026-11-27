@@ -16,14 +16,11 @@ Editor::Editor(QWidget * parent, Qt::WindowFlags flags) :
 void Editor::crearActions() {
 
 	accionSalir = new QAction("Salir",this);
-
 	accionGuardar = new QAction("Guardar",this);
-
 	accionGuardarComo = new QAction("Guardar Como",this);
-
 	accionAbrir = new QAction("Abrir",this);
-
 	accionNuevo = new QAction("Nuevo",this);
+	accionBuscar = new QAction("Buscar",this);
 
 	connect(accionSalir,
 			SIGNAL(triggered()),
@@ -53,28 +50,37 @@ void Editor::crearActions() {
 	for (int i = 0; i < MAXRECIENTES; ++i) {
 		QAction *accion = new QAction("pepe");
 		connect(accion,
-				&QAction::triggered,
+				SIGNAL(triggered()),
 				this,
-				&Editor::slotAbrirFicheroReciente);
+				SLOT(slotAbrirFicheroReciente()));
 		accionesFicherosRecientes.append(accion);
+		accion->setVisible(false);
 	}
+
+	connect(accionBuscar,
+			SIGNAL(triggered()),
+			this,
+			SLOT(slotAbrirDialogoBuscar()));
 }
 
 void Editor::crearMenus() {
 	QMenuBar *barraActual = this->menuBar();
 	QMenu *menuFitxer = barraActual->addMenu("Fitxer");
+	QMenu *menuBuscar = barraActual->addMenu("Buscar");
 
 	menuFitxer->addAction(accionSalir);
 	menuFitxer->addAction(accionGuardar);
 	menuFitxer->addAction(accionGuardarComo);
 	menuFitxer->addAction(accionAbrir);
 	menuFitxer->addAction(accionNuevo);
+	menuBuscar->addAction(accionBuscar);
 
 	editorCentral->addAction(accionSalir);
 	editorCentral->addAction(accionGuardar);
 	editorCentral->addAction(accionGuardarComo);
 	editorCentral->addAction(accionAbrir);
 	editorCentral->addAction(accionNuevo);
+	editorCentral->addAction(accionBuscar);
 	editorCentral->setContextMenuPolicy(Qt::ActionsContextMenu);
 
 	for (int i = 0; i < accionesFicherosRecientes.length(); ++i) {
@@ -136,19 +142,14 @@ void Editor::slotAbrir() {
 
 	int respuesta;
 	if(!guardarEstat) {
-		respuesta = QMessageBox::question(this,
-											  QString("Cuidao"),
-											  QString("Te vas a cargar el texto, ¡Imbecil!"),
-											  QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
-
+		respuesta = QMessageBox::question(this,QString("Cuidao"),
+					QString("Te vas a cargar el texto, ¡Imbecil!"),
+					QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
 		if (respuesta == QMessageBox::Cancel)
 			return;
-
 		if (respuesta == QMessageBox::Save)
 			slotGuardar();
 	}
-
-	editorCentral->document()->clear();
 
 	QString nombreArchivo = rutaFicheroActual;
 
@@ -159,22 +160,7 @@ void Editor::slotAbrir() {
 								Ficheros de texto (*.txt)")
 							);
 
-	QFile fichero(nombreArchivo);
-
-	if (! fichero.open(QIODevice::ReadOnly) )
-		return;
-
-	QTextStream stream(&fichero);
-
-	while (! stream.atEnd()) {
-		QString linea = stream.readLine();
-		editorCentral->append(linea);
-	}
-
-	rutaFicheroActual = nombreArchivo;
-	fichero.close();
-	guardarEstat = true;
-	qDebug() << "Nombre fichero seleccionado: " << nombreArchivo;
+	abrirArchivo(nombreArchivo);
 }
 
 void Editor::slotGuardar() {
@@ -221,15 +207,63 @@ void Editor::slotGuardarComo() {
 		stream << editorCentral->document()->findBlockByNumber(i).text() << Qt::endl;
 	}
 
-	rutaFicheroActual = nombreArchivo;
+	establecerFicheroActual(nombreArchivo);
 	fichero.close();
 }
 
 void Editor::slotNuevo() {
-	rutaFicheroActual = QString("");
+	establecerFicheroActual(QString(""));
 	editorCentral->document()->clear();
 }
 
-void Editor::slotAbrirFicheroReciente() {
+void Editor::establecerFicheroActual(QString nuevaRuta) {
+	rutaFicheroActual = nuevaRuta;
+	rutasRecientes.removeAll(nuevaRuta);
+	rutasRecientes.prepend(nuevaRuta);
 
+	for (int i = 0; i < rutasRecientes.length(); ++i) {
+		QString ruta = rutasRecientes[i];
+		QString acortao = QFileInfo(ruta).fileName();
+		accionesFicherosRecientes[i]->setData(QVariant(ruta));
+		accionesFicherosRecientes[i]->setText(acortao);
+		accionesFicherosRecientes[i]->setVisible(true);
+	}
+}
+
+void Editor::slotAbrirFicheroReciente() {
+	QString ruta;
+	QAction * accionCulpable;
+	QObject * objetoCulpable;
+
+	objetoCulpable = sender();
+	accionCulpable = qobject_cast<QAction*>(objetoCulpable);
+
+	ruta = accionCulpable->text();
+
+	abrirArchivo(ruta);
+}
+
+void Editor::abrirArchivo(QString ruta) {
+	QFile fichero(ruta);
+
+	if (! fichero.open(QIODevice::ReadOnly) )
+		return;
+
+	QTextStream stream(&fichero);
+	editorCentral->document()->clear();
+
+	while (! stream.atEnd()) {
+		QString linea = stream.readLine();
+		editorCentral->append(linea);
+	}
+
+	establecerFicheroActual(ruta);
+	fichero.close();
+	guardarEstat = true;
+	qDebug() << "Nombre fichero seleccionado: " << ruta;
+}
+
+void Editor::slotAbrirDialogoBuscar() {
+	dialogoBuscar = new FindDialog();
+	dialogoBuscar->exec();
 }
