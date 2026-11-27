@@ -265,5 +265,5 @@ void Editor::abrirArchivo(QString ruta) {
 
 void Editor::slotAbrirDialogoBuscar() {
 	dialogoBuscar = new FindDialog();
-	dialogoBuscar->exec();
+	dialogoBuscar->show();
 }
